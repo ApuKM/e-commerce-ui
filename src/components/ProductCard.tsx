@@ -35,13 +35,13 @@ const ProductCard = ({ product }: { product: ProductType }) => {
       selectedSize: productTypes.size,
       selectedColor: productTypes.color,
       quantity: 1,
-    })
+    });
     toast.success("Product added to cart!", {
       autoClose: 2000,
       closeOnClick: true,
       theme: "colored",
-    })
-  }
+    });
+  };
 
   return (
     <div className="shadow-lg rounded-lg overflow-hidden">
@@ -103,9 +103,10 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         </div>
         <div className="flex items-center justify-between">
           <p className="font-medium">${product.price.toFixed(2)}</p>
-          <button 
-          onClick={handleAddToCart}
-          className="ring-1 ring-gray-200 rounded-md px-2 py-1 text-sm cursor-pointer hover:text-white hover:bg-black transition-all duration-300 flex items-center gap-2">
+          <button
+            onClick={handleAddToCart}
+            className="ring-1 ring-gray-200 rounded-md px-2 py-1 text-sm cursor-pointer hover:text-white hover:bg-black transition-all duration-300 flex items-center gap-2"
+          >
             <ShoppingCart className="w-4 h-4" />
             Add to Cart
           </button>

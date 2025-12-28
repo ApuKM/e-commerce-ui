@@ -70,7 +70,7 @@ const Categories = () => {
         {categories.map((category) => (
             <div key={category.name}
             className={clsx(
-                "flex items-center justify-center gap-2 px-2 py-1 rounded-lg",
+                "flex items-center justify-center gap-2 px-2 py-1 rounded-lg cursor-pointer",
                 {
                     "bg-white": selectedCategory === category.slug,
                     "text-gray-500": selectedCategory !== category.slug,
