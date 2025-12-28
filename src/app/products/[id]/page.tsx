@@ -19,25 +19,29 @@ const product: ProductType = {
   },
 };
 
-export const generateMetadata = ({
+export const generateMetadata = async ({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) => {
+  const { id } = await params;
+
   return {
     title: product.name,
-    description: product.description, // <-- use `description` (not `describe`)
+    description: product.description,
   };
 };
 
-const ProductPage = ({
+const ProductPage = async ({
   params,
   searchParams,
 }: {
-  params: { id: string };
-  searchParams: { color?: string; size?: string };
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ color?: string; size?: string }>;
 }) => {
-  const { color, size } = searchParams || {};
+  const { id } = await params;
+  const { color, size } = await searchParams;
+
   const selectedColor = color || product.colors[0];
   const selectedSize = size || product.sizes[0];
 
@@ -56,42 +60,12 @@ const ProductPage = ({
         <h1 className="text-2xl font-medium">{product.name}</h1>
         <p className="text-gray-500">{product.description}</p>
         <h2 className="text-2xl font-semibold">${product.price.toFixed(2)}</h2>
+
         <ProductInteraction
           product={product}
           selectedColor={selectedColor}
           selectedSize={selectedSize}
         />
-        <div className="flex items-center gap-2 mt-4">
-          <Image
-            src="/klarna.png"
-            alt="klarna"
-            width={50}
-            height={25}
-            className="rounded-md"
-          />
-          <Image
-            src="/cards.png"
-            alt="cards"
-            width={50}
-            height={25}
-            className="rounded-md"
-          />
-          <Image
-            src="/stripe.png"
-            alt="stripe"
-            width={50}
-            height={25}
-            className="rounded-md"
-          />
-        </div>
-        <p className="text-gray-500 text-xs">
-          By clicking Pay Now, you agree to our{" "}
-          <span className="underline hover:text-black">Terms & Conditions</span>{" "}
-          and <span className="underline hover:text-black">Privacy Policy</span>
-          . You authorize us to charge your selected payment method for the
-          total amount shown. All sales are subject to our return and{" "}
-          <span className="underline hover:text-black">Refund Policies</span>.
-        </p>
       </div>
     </div>
   );
