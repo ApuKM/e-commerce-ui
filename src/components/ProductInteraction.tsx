@@ -4,8 +4,8 @@ import useCartStore from "@/stores/cartStore";
 import { ProductType } from "@/types";
 import clsx from "clsx";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import React, { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 const ProductInteraction = ({
