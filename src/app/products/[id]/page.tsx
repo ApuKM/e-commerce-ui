@@ -19,25 +19,25 @@ const product: ProductType = {
   },
 };
 
-export const generateMetadata = async ({
+export const generateMetadata = ({
   params,
 }: {
   params: { id: string };
 }) => {
   return {
     title: product.name,
-    describe: product.description,
+    description: product.description, // <-- use `description` (not `describe`)
   };
 };
 
-const ProductPage = async ({
+const ProductPage = ({
   params,
   searchParams,
 }: {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<{ color?: string; size?: string }>;
+  params: { id: string };
+  searchParams: { color?: string; size?: string };
 }) => {
-  const { color, size } = await searchParams;
+  const { color, size } = searchParams || {};
   const selectedColor = color || product.colors[0];
   const selectedSize = size || product.sizes[0];
 
@@ -49,7 +49,7 @@ const ProductPage = async ({
           alt={product.name}
           fill
           className="object-contain rounded-md"
-        ></Image>
+        />
       </div>
 
       <div className="w-full lg:w-7/12 flex flex-col gap-4">
