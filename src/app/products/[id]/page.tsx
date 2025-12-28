@@ -1,7 +1,6 @@
 import ProductInteraction from "@/components/ProductInteraction";
 import { ProductType } from "@/types";
 import Image from "next/image";
-import { size } from "zod/v4/mini";
 
 const product: ProductType = {
   id: 1,

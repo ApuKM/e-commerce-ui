@@ -3,7 +3,7 @@
 import PaymentForm from "@/components/PaymentForm";
 import ShippingForm from "@/components/ShippingForm";
 import useCartStore from "@/stores/cartStore";
-import { CartItemType, ShippingFormType } from "@/types";
+import { ShippingFormType } from "@/types";
 import clsx from "clsx";
 import { ArrowRight, Trash2 } from "lucide-react";
 import Image from "next/image";
