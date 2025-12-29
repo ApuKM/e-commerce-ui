@@ -89,6 +89,15 @@ const CartPage = () => {
   const activeStep = parseInt(searchParams.get("step") || "1");
 
   const { cart, removeFromCart } = useCartStore();
+
+   const discountRate = 0.1;
+  const shippingFee = 10;
+  const subtotal = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  const total = subtotal - (subtotal * discountRate) + shippingFee;
+
   return (
     <div className="flex flex-col gap-8 items-center justify-center mt-12">
       {/* TITLE */}
@@ -184,15 +193,13 @@ const CartPage = () => {
             <div className="flex justify-between text-sm">
               <p className="text-gray-500">Subtotal</p>
               <p className="font-medium">
-                $
-                {cart
-                  .reduce((acc, item) => acc + item.price * item.quantity, 0)
-                  .toFixed(2)}
+                ${subtotal.toFixed(2)}
+                
               </p>
             </div>
             <div className="flex justify-between text-sm">
               <p className="text-gray-500">Discount(10%)</p>
-              <p className="font-medium">$ 10</p>
+              <p className="font-medium">${(subtotal * discountRate).toFixed(2)}</p>
             </div>
             <div className="flex justify-between text-sm">
               <p className="text-gray-500">Shipping Fee</p>
@@ -203,9 +210,7 @@ const CartPage = () => {
               <p className="text-gray-800 font-semibold">Total</p>
               <p className="font-medium">
                 $
-                {cart
-                  .reduce((acc, item) => acc + item.price * item.quantity, 0)
-                  .toFixed(2)}
+                {total.toFixed(2)}
               </p>
             </div>
           </div>
